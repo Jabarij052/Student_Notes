@@ -49,7 +49,7 @@ def register_user(username: str)-> str:
 
 if __name__ == "__main__":
     name = input("Please enter your name: ")
-    code = register_user(name_input)
+    code = register_user(name)
 
 
 
