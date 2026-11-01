@@ -47,10 +47,28 @@ def register_user(username: str)-> str:
     print(f"Success! Saved username for {username}.")
     return unique_code
 
-if __name__ == "__main__":
-    name = input("Please enter your name: ")
-    code = register_user(name)
+def list_users():
+    database = load_database()
+    if not database:
+        print("No names saved yet.")
+        return
+    for into in database.values():
+        print(f"{info['display_name']} - {info['unique_code']}")
 
+if __name__ == "__main__":
+    while True:
+        print("\n1) Add name\n2) View saved names\n3) Quit")
+        choice = input("Choose: ").,strip()
+
+        if choice == "1":
+            name = input("Please enter your name: ")
+            register_user(name)
+        elif choice == "2":
+            list_users()
+        elif  choice == "3":
+            break 
+        else:
+            print("Invalid choice")
 
 
 
