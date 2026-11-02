@@ -33,6 +33,9 @@ def register_user(username: str)-> str:
     database = load_database()
 
     cleaned_name = "".join(username.split()).lower()
+    if not cleaned_name:
+        print("Name can't be empty.")
+        return None
     if cleaned_name in database:
         print(f"User already exist for '{username}', please enter new name.")
         return database[cleaned_name]["unique_code"]
@@ -52,13 +55,13 @@ def list_users():
     if not database:
         print("No names saved yet.")
         return
-    for into in database.values():
+    for info in database.values():
         print(f"{info['display_name']} - {info['unique_code']}")
 
 if __name__ == "__main__":
     while True:
         print("\n1) Add name\n2) View saved names\n3) Quit")
-        choice = input("Choose: ").,strip()
+        choice = input("Choose: ").strip()
 
         if choice == "1":
             name = input("Please enter your name: ")
