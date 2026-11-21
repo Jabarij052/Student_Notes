@@ -22,12 +22,19 @@ def read_document(note_file):
         with open(note_file, 'r', encoding='utf-8') as file:
             return file.read()
 
-    if suffix == ".pdf":
+    """if suffix == ".pdf":
         reader = PdfReader(note_file)
         # TODO: get the text from every page and join it into one string,
         # the same way as the "all_text" line in the pypdf example from earlier
         # TODO: anything else: print a clear message and return None
-
+    note_file = input("Enter the path of the notes: ").strip().strip("'\"").replace("\\ ", " ")"""
+    
+    if suffix == ".pdf":
+            reader = PdfReader(note_file)
+            return "\n\n".join(page.extract_text() or "" for page in reader.pages)
+    
+    print(f"Sorry, '{suffix}' files aren't supported. Choose a .txt or .pdf file.")
+    return None
 
 def clean_text(text):                               # takes ONE review string (that is what .apply passes in)
     text = re.sub('<.*?>', ' ', text)               # remove HTML tags like <br /> found in IMDB reviews
