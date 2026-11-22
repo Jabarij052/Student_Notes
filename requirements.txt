@@ -1,2 +1,4 @@
 nltk
 pypdf
+Python 3
+pytest
